@@ -96,8 +96,8 @@ Stay tuned for the publication!
 ### To Cite this Github Repository
 ```
 @misc{mcrlkorean2025,
-  title        = {korean_benchmarks},
-  author       = {mcrl},
+  title        = {Korean Benchmarks},
+  author       = {Thunder Research Group},
   howpublished = {\url{https://github.com/mcrl/korean_benchmarks}},
   year         = {2025},
   note         = {GitHub repository}
