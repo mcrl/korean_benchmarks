@@ -90,7 +90,8 @@ from datasets import load_dataset
 df_ifeval = load_dataset("Yeonkyoung/ko_ifeval")
 
 # Korean ARC
-df_arc = load_dataset("Yeonkyoung/ko_arc")
+df_arc_c = load_dataset("Yeonkyoung/ko_arc", "challenge")
+df_arc_e= load_dataset("Yeonkyoung/ko_arc", "easy")
 
 # Korean GSM8K
 df_gsm8k = load_dataset("Yeonkyoung/ko_gsm8k")
