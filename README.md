@@ -93,6 +93,18 @@ This is to prevent the evaluation setâ€”currently the only portion in this pageâ
 A detailed paper describing the dataset construction process and benchmark results is **coming soon**.  
 Stay tuned for the publication!
 
+### To Cite this Github Repository
+```
+@misc{mcrlkorean2025,
+  title        = {korean_benchmarks},
+  author       = {mcrl},
+  howpublished = {\url{https://github.com/mcrl/korean_benchmarks}},
+  year         = {2025},
+  note         = {GitHub repository}
+}
+```
+
+
 ### Original Dataset Citation Information
 ```
 @article{allenai:arc,
