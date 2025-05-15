@@ -66,7 +66,7 @@ The IFEval dataset was designed to evaluate instruction-following in Korean, wit
 
 
 
-## 📊 Table 1. Datasets Composition
+## Table 1. Datasets Composition
 
 | Benchmark         | Evaluation Task                                  | Data Size                                       | Creation Method       | Columns                                           | Available at                                                                 |
 |-------------------|---------------------------------------------------|--------------------------------------------------|------------------------|---------------------------------------------------|------------------------------------------------------------------------------|
