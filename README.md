@@ -97,7 +97,7 @@ Stay tuned for the publication!
 ```
 @misc{mcrlkorean2025,
   title        = {Korean Benchmarks},
-  author       = {Thunder Research Group},
+  author       = {{Thunder Research Group}},
   howpublished = {\url{https://github.com/mcrl/korean_benchmarks}},
   year         = {2025},
   note         = {GitHub repository}
