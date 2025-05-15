@@ -80,6 +80,32 @@ The IFEval dataset was designed to evaluate instruction-following in Korean, wit
 
 You can find examples in the `samples` folder.
 
+
+## How to Use (via Hugging Face `datasets` / Upcoming)
+
+```python
+from datasets import load_dataset
+
+# Korean IFEval
+ds_ifeval = load_dataset("Yeonkyoung/ko_ifeval")
+
+# Korean ARC
+ds_arc = load_dataset("Yeonkyoung/ko_arc")
+
+# Korean GSM8K
+ds_gsm8k = load_dataset("Yeonkyoung/ko_gsm8k")
+
+# Korean EQ-Bench
+ds_eqbench = load_dataset("Yeonkyoung/ko_eqbench")
+
+# Korean Winogrande
+ds_winogrande = load_dataset("Yeonkyoung/ko_winogrande")
+
+# Korean LAMBADA
+ds_lambada = load_dataset("Yeonkyoung/snu_lambada")
+```
+
+
 ## Additional Information
 ### Access to the Dataset
 
