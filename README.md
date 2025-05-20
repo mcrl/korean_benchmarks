@@ -81,7 +81,7 @@ The IFEval dataset was designed to evaluate instruction-following in Korean, wit
 You can find examples in the `samples` folder.
 
 
-## How to Use (via Hugging Face `datasets` / Upcoming)
+## How to Use (via Hugging Face `datasets`)
 
 ```python
 from datasets import load_dataset
