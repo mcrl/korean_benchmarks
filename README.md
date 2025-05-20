@@ -113,13 +113,6 @@ df_lambada = load_dataset("Yeonkyoung/snu_lambada")
 To access the dataset, you will need to submit an access request via huggingface.   
 This is to prevent the evaluation set—currently the only portion in this page—from being used for training, as open datasets are often scraped indiscriminately.
 
-> We are preparing the access form and it will be available soon. Please bear with us a little longer.
-
-### Upcoming Paper
-
-A detailed paper describing the dataset construction process and benchmark results is **coming soon**.  
-Stay tuned for the publication!
-
 ### To Cite this Github Repository
 ```
 @misc{mcrlkorean2025,
