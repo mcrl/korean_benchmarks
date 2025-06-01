@@ -1,4 +1,4 @@
-# Snu-Benchmarks
+# Korean Benchmarks
 
 ## Summary
 **Snu-Benchmarks** is a collection of Korean benchmark datasets designed to evaluate language models in a wide range of tasks. 
@@ -85,7 +85,7 @@ snu_lambada = load_dataset("thunder-research-group/snu_lambada")
 ### Cite as
 ```
 @misc{mcrlkorean2025,
-  title        = {Snu-Benchmarks},
+  title        = {Korean Benchmarks},
   author       = {{Thunder Research Group}},
   howpublished = {\url{https://github.com/mcrl/korean_benchmarks}},
   year         = {2025},
