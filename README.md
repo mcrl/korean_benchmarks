@@ -1,70 +1,83 @@
-# korean_benchmarks
-## Translation Process of the Dataset
+# Snu-Benchmarks
+
+## Summary
+**Snu-Benchmarks** is a collection of Korean benchmark datasets designed to evaluate language models in a wide range of tasks. 
+It includes six datasets that are either translated or newly constructed to align with Korean language and cultural context.
+
+All datasets underwent a four-step construction process to ensure high linguistic and logical quality:  
+1. **Initial Translation or Generation**  
+2. **Expert Correction**  
+3. **Localization**  
+4. **Independent Cross-review**
+
+--- 
+
+## Dataset Construction
+### Translation Process of the Dataset
 
 The translation process consisted of four key stages:
 
-### 1. Initial Translation
+#### 1. Initial Translation
 - Used **DeepL API** to machine-translate English benchmark datasets into Korean.
 
-### 2. Correction
+#### 2. Correction
 Domain experts corrected machine translation errors, including:
 - Fixing original English data errors (e.g., typos, duplicate questions, mislabeled answers).
 - Refining unnatural literal translations and correcting mistranslations.
 - Ensuring consistent tone and style within each item.
 - Standardizing translated terminology  
 
-### 3. Localization
+#### 3. Localization
 Adjusted content to reflect Korean cultural context:
 - Replaced foreign names, units, and cultural concepts with Korean equivalents  
 
-### 4. Cross-review
+#### 4. Cross-review
 - An independent reviewer, not involved in steps 2 or 3, validated and refined the corrected content to ensure high quality.
-## Dataset Instance Examples
 
-## Development Process of the Dataset
+### Development Process of the Dataset
 
-### LAMBADA
+#### LAMBADA
 
 The LAMBADA dataset was developed to assess models’ contextual understanding using Korean literary texts.  
 Due to linguistic and stylistic differences, it was created from scratch rather than translating English sources.
 
-#### 1. Data Collection & Preprocessing
+##### 1. Data Collection & Preprocessing
 - Collected copyright-free Korean literary works and speeches from public sources (from [공유마당](https://gongu.copyright.or.kr/gongu/main/main.do)).
 - Automatically selected candidate passages that:
   - Were sufficiently long.
   - Contained keywords repeated more than once.
 
-#### 2. Initial Data Generation
+##### 2. Initial Data Generation
 - Removed a repeated noun from the final sentence of each selected passage to create a blank.
 - Marked the removed word as the **answer**, and listed other words in context as **candidates**.
 
-#### 3. Editing & Correction
+##### 3. Editing & Correction
 - Ensured natural grammar around the blank (e.g., handling postpositions).
 - Modified or removed questions with multiple valid answers or unclear context.
 
-#### 4. Cross-review
+##### 4. Cross-review
 - A second reviewer verified and corrected remaining issues for quality assurance.
 
-### IFEval
+#### IFEval
 
 The IFEval dataset was designed to evaluate instruction-following in Korean, with both translated and newly created tasks.
 
-#### 1. Data Collection & Preprocessing
+##### 1. Data Collection & Preprocessing
 - Collected diverse text sources including presidential speeches.
 - Categorized instruction types (e.g., forbidden words, structure constraints).
 
-#### 2. Initial Data Generation
+##### 2. Initial Data Generation
 - Created prompts in Korean aligned with instruction-following evaluation formats.
 - Carefully designed constraints using Korean syntax and cultural norms (e.g., avoiding certain words or using specific syllables).
 
-#### 3. Editing & Correction
+##### 3. Editing & Correction
 - Unified tone, formality, and formatting.
 - Refined ambiguous or contradictory prompts.
 
-#### 4. Cross-review
+##### 4. Cross-review
 - Conducted peer review to ensure consistency and eliminate residual issues.
 
-
+---
 
 ## Table 1. Datasets Composition
 
