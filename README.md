@@ -33,7 +33,7 @@ All datasets underwent a four-step construction process to ensure high linguisti
 ### 4. Cross-review
 - A separate reviewer validated the entire dataset for logical coherence and fluency.
 
-For more information, please refer to the each Huggingface page of the dataset. 
+For more information about each dataset, please refer to its dedicated Hugging Face page.
 
 ---
 
@@ -82,10 +82,10 @@ snu_lambada = load_dataset("thunder-research-group/snu_lambada")
 
 ## Additional Information
 
-### To Cite this Github Repository
+### Cite as
 ```
 @misc{mcrlkorean2025,
-  title        = {Korean Benchmarks},
+  title        = {Snu-Benchmarks},
   author       = {{Thunder Research Group}},
   howpublished = {\url{https://github.com/mcrl/korean_benchmarks}},
   year         = {2025},
