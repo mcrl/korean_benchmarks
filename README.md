@@ -12,119 +12,75 @@ All datasets underwent a four-step construction process to ensure high linguisti
 
 --- 
 
-## Dataset Construction
-### Translation Process of the Dataset
+## Dataset Construction Process
 
-The translation process consisted of four key stages:
+### 1. Initial Translation / Data Generation
+- Used [DeepL API](https://www.deepl.com/ko/products/api) to translate English datasets (ARC, GSM8K, Winogrande, EQ-Bench, IFEval).
+- For LAMBADA, Korean data was newly created from public literary works in [공유마당](https://gongu.copyright.or.kr/gongu/main/main.do).
 
-#### 1. Initial Translation
-- Used **DeepL API** to machine-translate English benchmark datasets into Korean.
+### 2. Correction
+- Domain experts corrected:
+  - Errors in the original datasets (e.g., typos, label errors, duplicates).
+  - Awkward or literal translations.
+  - Inconsistencies in tone and formatting.
+  - Unnatural or ambiguous expressions.
 
-#### 2. Correction
-Domain experts corrected machine translation errors, including:
-- Fixing original English data errors (e.g., typos, duplicate questions, mislabeled answers).
-- Refining unnatural literal translations and correcting mistranslations.
-- Ensuring consistent tone and style within each item.
-- Standardizing translated terminology  
+### 3. Localization
+- Replaced foreign names, units, and concepts with Korean equivalents.
+  - e.g., “Jessica” → “지희”, feet → 미터, dollars → 원
+- Modified cultural scenarios (e.g., lawn mowing → shoe shining) where necessary.
 
-#### 3. Localization
-Adjusted content to reflect Korean cultural context:
-- Replaced foreign names, units, and cultural concepts with Korean equivalents  
+### 4. Cross-review
+- A separate reviewer validated the entire dataset for logical coherence and fluency.
 
-#### 4. Cross-review
-- An independent reviewer, not involved in steps 2 or 3, validated and refined the corrected content to ensure high quality.
-
-### Development Process of the Dataset
-
-#### LAMBADA
-
-The LAMBADA dataset was developed to assess models’ contextual understanding using Korean literary texts.  
-Due to linguistic and stylistic differences, it was created from scratch rather than translating English sources.
-
-##### 1. Data Collection & Preprocessing
-- Collected copyright-free Korean literary works and speeches from public sources (from [공유마당](https://gongu.copyright.or.kr/gongu/main/main.do)).
-- Automatically selected candidate passages that:
-  - Were sufficiently long.
-  - Contained keywords repeated more than once.
-
-##### 2. Initial Data Generation
-- Removed a repeated noun from the final sentence of each selected passage to create a blank.
-- Marked the removed word as the **answer**, and listed other words in context as **candidates**.
-
-##### 3. Editing & Correction
-- Ensured natural grammar around the blank (e.g., handling postpositions).
-- Modified or removed questions with multiple valid answers or unclear context.
-
-##### 4. Cross-review
-- A second reviewer verified and corrected remaining issues for quality assurance.
-
-#### IFEval
-
-The IFEval dataset was designed to evaluate instruction-following in Korean, with both translated and newly created tasks.
-
-##### 1. Data Collection & Preprocessing
-- Collected diverse text sources including presidential speeches.
-- Categorized instruction types (e.g., forbidden words, structure constraints).
-
-##### 2. Initial Data Generation
-- Created prompts in Korean aligned with instruction-following evaluation formats.
-- Carefully designed constraints using Korean syntax and cultural norms (e.g., avoiding certain words or using specific syllables).
-
-##### 3. Editing & Correction
-- Unified tone, formality, and formatting.
-- Refined ambiguous or contradictory prompts.
-
-##### 4. Cross-review
-- Conducted peer review to ensure consistency and eliminate residual issues.
+For more information, please refer to the each Huggingface page of the dataset. 
 
 ---
 
-## Table 1. Datasets Composition
+## Datasets Composition
 
 | Benchmark         | Evaluation Task                                  | Data Size                                       | Creation Method       | Columns                                           | Available at                                                                 |
 |-------------------|---------------------------------------------------|--------------------------------------------------|------------------------|---------------------------------------------------|------------------------------------------------------------------------------|
-| Korean ARC        | Science Knowledge Q&A                            | 3,543 (easy: 2,376, challenge: 1,167)            | Translation            | `id`, `question`, `choices`, `answerKey`          | [link](https://huggingface.co/datasets/Yeonkyoung/ko_arc)                   |
-| Korean GSM8K      | Math Problem Solving                              | 1,319                                            | Translation            | `question`, `answer`                              | [link](https://huggingface.co/datasets/Yeonkyoung/ko_gsm8k)                 |
-| Korean EQ-Bench   | Dialogue Sentiment Analysis                       | 171                                              | Translation            | `prompt`, `reference_answer`, `reference_answer_fullscale` | [link](https://huggingface.co/datasets/Yeonkyoung/ko_eqbench)              |
-| Korean Winogrande | Logical/Contextual Reasoning and Word Prediction | 1,267                                            | Translation            | `sentence`, `option1`, `option2`, `answer`        | [link](https://huggingface.co/datasets/Yeonkyoung/ko_winogrande)           |
-| Korean LAMBADA    | Literary Context Understanding and Word Prediction| 2,255                                            | Development            | `index`, `text`, `answer`, `candidate`            | [link](https://huggingface.co/datasets/Yeonkyoung/snu_lambada)             |
-| Korean IFEval     | Instruction Following                             | 841 (Translation: 541, Development: 300)         | Translation, Development | `key`, `prompt`, `instruction_id_list`, `kwargs` | [link](https://huggingface.co/datasets/Yeonkyoung/ko_ifeval)               |
+| Snu-ARC        | Science Knowledge Q&A                            | 3,543 (easy: 2,376, challenge: 1,167)            | Translation            | `id`, `question`, `choices`, `answerKey`          | [link](https://huggingface.co/datasets/thunder-research-group/snu_arc)                   |
+| Snu-GSM8K      | Math Problem Solving                              | 1,319                                            | Translation            | `question`, `answer`                              | [link](https://huggingface.co/datasets/thunder-research-group/snu_gsm8k)                 |
+| Snu-EQ-Bench   | Dialogue Sentiment Analysis                       | 171                                              | Translation            | `prompt`, `reference_answer`, `reference_answer_fullscale` | [link](https://huggingface.co/datasets/thunder-research-group/snu_eqbench)              |
+| Snu-Winogrande | Logical/Contextual Reasoning and Word Prediction | 1,267                                            | Translation            | `sentence`, `option1`, `option2`, `answer`        | [link](https://huggingface.co/datasets/thunder-research-group/snu_winogrande)           |
+| Snu-LAMBADA    | Literary Context Understanding and Word Prediction| 2,255                                            | Development            | `index`, `text`, `answer`, `candidate`            | [link](https://huggingface.co/datasets/thunder-research-group/snu_lambada)             |
+| Snu-IFEval     | Instruction Following                             | 841 (Translation: 541, Development: 300)         | Translation, Development | `key`, `prompt`, `instruction_id_list`, `kwargs` | [link](https://huggingface.co/datasets/thunder-research-group/snu_ifeval)               |
 | **Total**         |                                                   | **9,396**                                        |                        |                                                   |                                                                              |
 
 You can find examples in the `samples` folder.
 
+---
 
 ## How to Use (via Hugging Face `datasets`)
 
 ```python
 from datasets import load_dataset
 
-# Korean IFEval
-df_ifeval = load_dataset("Yeonkyoung/ko_ifeval")
+# Snu-IFEval
+snu_ifeval = load_dataset("Yeonkyoung/ko_ifeval")
 
-# Korean ARC
-df_arc_c = load_dataset("Yeonkyoung/ko_arc", "challenge")
-df_arc_e= load_dataset("Yeonkyoung/ko_arc", "easy")
+# Snu-ARC
+snu_arc_c = load_dataset("thunder-research-group/snu_arc", "challenge")
+snu_arc_e= load_dataset("thunder-research-group/snu_arc", "easy")
 
-# Korean GSM8K
-df_gsm8k = load_dataset("Yeonkyoung/ko_gsm8k")
+# Snu-GSM8K
+snu_gsm8k = load_dataset("thunder-research-group/snu_gsm8k")
 
-# Korean EQ-Bench
-df_eqbench = load_dataset("Yeonkyoung/ko_eqbench")
+# Snu-EQ-Bench
+snu_eqbench = load_dataset("thunder-research-group/snu_eqbench")
 
-# Korean Winogrande
-df_winogrande = load_dataset("Yeonkyoung/ko_winogrande")
+# Snu-Winogrande
+snu_winogrande = load_dataset("thunder-research-group/snu_winogrande")
 
-# Korean LAMBADA
-df_lambada = load_dataset("Yeonkyoung/snu_lambada")
+# Snu-LAMBADA
+snu_lambada = load_dataset("thunder-research-group/snu_lambada")
 ```
 
+---
 
 ## Additional Information
-### Access to the Dataset
-
-To access the dataset, you will need to submit an access request via huggingface.   
-This is to prevent the evaluation set—currently the only portion in this page—from being used for training, as open datasets are often scraped indiscriminately.
 
 ### To Cite this Github Repository
 ```
@@ -185,3 +141,6 @@ year={2019}
       url={https://arxiv.org/abs/2311.07911}, 
 }
 ```
+
+### Contact Information
+If you find something wrong or have question about the dataset, contact snullm@aces.snu.ac.kr.
