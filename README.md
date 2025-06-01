@@ -1,3 +1,6 @@
+> Note: Evaluation code for each benchmark dataset is under preparation and will be released soon to support standardized model assessment.
+
+
 # Korean Benchmarks
 
 ## Snu-Benchmarks Summary
