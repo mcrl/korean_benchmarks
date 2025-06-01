@@ -1,6 +1,6 @@
 # Korean Benchmarks
 
-## Summary
+## Snu-Benchmarks Summary
 **Snu-Benchmarks** is a collection of Korean benchmark datasets designed to evaluate language models in a wide range of tasks. 
 It includes six datasets that are either translated or newly constructed to align with Korean language and cultural context.
 
