@@ -74,7 +74,7 @@ snu_gsm8k = load_dataset("thunder-research-group/snu_gsm8k")
 # Snu-EQ-Bench
 snu_eqbench = load_dataset("thunder-research-group/snu_eqbench")
 
-# Snu-Winogrande
+# Snu-WinoGrande
 snu_winogrande = load_dataset("thunder-research-group/snu_winogrande")
 
 # Snu-LAMBADA
