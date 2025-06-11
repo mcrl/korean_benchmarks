@@ -4,7 +4,7 @@
 # Korean Benchmarks
 
 ## Summary
-**Snu-Benchmarks** is a collection of Korean benchmark datasets designed to evaluate language models in a wide range of tasks. 
+**SNU Thunder Korean Benchmarks** is a collection of Korean benchmark datasets designed to evaluate language models in a wide range of tasks. 
 It includes datasets that are either translated or newly constructed to align with Korean language and cultural context.
 
 All datasets underwent a four-step construction process to ensure high linguistic and logical quality:  
@@ -44,12 +44,12 @@ For more information about each dataset, please refer to its dedicated Hugging F
 
 | Benchmark         | Evaluation Task                                  | Data Size                                       | Creation Method       | Columns                                           | Available at                                                                 |
 |-------------------|---------------------------------------------------|--------------------------------------------------|------------------------|---------------------------------------------------|------------------------------------------------------------------------------|
-| Snu-ARC        | Science Knowledge Q&A                            | 3,543 (easy: 2,376, challenge: 1,167)            | Translation            | `id`, `question`, `choices`, `answerKey`          | [link](https://huggingface.co/datasets/thunder-research-group/SNU_Ko-ARC)                   |
-| Snu-GSM8K      | Math Problem Solving                              | 1,319                                            | Translation            | `question`, `answer`                              | [link](https://huggingface.co/datasets/thunder-research-group/SNU_Ko-GSM8K)                 |
-| Snu-EQ-Bench   | Dialogue Sentiment Analysis                       | 171                                              | Translation            | `prompt`, `reference_answer`, `reference_answer_fullscale` | [link](https://huggingface.co/datasets/thunder-research-group/SNU_Ko-EQ-Bench)              |
-| Snu-WinoGrande | Logical/Contextual Reasoning and Word Prediction | 1,267                                            | Translation            | `sentence`, `option1`, `option2`, `answer`        | [link](https://huggingface.co/datasets/thunder-research-group/SNU_Ko-WinoGrande)           |
-| Snu-LAMBADA    | Literary Context Understanding and Word Prediction| 2,255                                            | Development            | `index`, `text`, `answer`, `candidate`            | [link](https://huggingface.co/datasets/thunder-research-group/SNU_Ko-LAMBADA)             |
-| Snu-IFEval     | Instruction Following                             | 841 (Translation: 541, Development: 300)         | Translation, Development | `key`, `prompt`, `instruction_id_list`, `kwargs` | [link](https://huggingface.co/datasets/thunder-research-group/SNU_Ko-IFEval)               |
+| SNU Ko-ARC        | Science Knowledge Q&A                            | 3,543 (easy: 2,376, challenge: 1,167)            | Translation            | `id`, `question`, `choices`, `answerKey`          | [link](https://huggingface.co/datasets/thunder-research-group/SNU_Ko-ARC)                   |
+| SNU Ko-GSM8K      | Math Problem Solving                              | 1,319                                            | Translation            | `question`, `answer`                              | [link](https://huggingface.co/datasets/thunder-research-group/SNU_Ko-GSM8K)                 |
+| SNU Ko-EQ-Bench   | Dialogue Sentiment Analysis                       | 171                                              | Translation            | `prompt`, `reference_answer`, `reference_answer_fullscale` | [link](https://huggingface.co/datasets/thunder-research-group/SNU_Ko-EQ-Bench)              |
+| SNU Ko-WinoGrande | Logical/Contextual Reasoning and Word Prediction | 1,267                                            | Translation            | `sentence`, `option1`, `option2`, `answer`        | [link](https://huggingface.co/datasets/thunder-research-group/SNU_Ko-WinoGrande)           |
+| SNU Ko-LAMBADA    | Literary Context Understanding and Word Prediction| 2,255                                            | Development            | `index`, `text`, `answer`, `candidate`            | [link](https://huggingface.co/datasets/thunder-research-group/SNU_Ko-LAMBADA)             |
+| SNU Ko-IFEval     | Instruction Following                             | 841 (Translation: 541, Development: 300)         | Translation, Development | `key`, `prompt`, `instruction_id_list`, `kwargs` | [link](https://huggingface.co/datasets/thunder-research-group/SNU_Ko-IFEval)               |
 | **Total**         |                                                   | **9,396**                                        |                        |                                                   |                                                                              |
 
 You can find examples in the `samples` folder.
@@ -61,24 +61,24 @@ You can find examples in the `samples` folder.
 ```python
 from datasets import load_dataset
 
-# Snu-IFEval
-snu_ifeval = load_dataset("Yeonkyoung/ko_ifeval")
+# SNU Ko-IFEval
+snu_ifeval = load_dataset("thunder-resesarch-group/SNU_Ko-IFEval")
 
-# Snu-ARC
-snu_arc_c = load_dataset("thunder-research-group/snu_arc", "challenge")
-snu_arc_e= load_dataset("thunder-research-group/snu_arc", "easy")
+# SNU Ko-ARC
+snu_arc_c = load_dataset("thunder-research-group/SNU_Ko-ARC", "challenge")
+snu_arc_e= load_dataset("thunder-research-group/SNU_Ko-ARC", "easy")
 
-# Snu-GSM8K
-snu_gsm8k = load_dataset("thunder-research-group/snu_gsm8k")
+# SNU Ko-GSM8K
+snu_gsm8k = load_dataset("thunder-research-group/SNU_Ko-GSM8K")
 
-# Snu-EQ-Bench
-snu_eqbench = load_dataset("thunder-research-group/snu_eqbench")
+# SNU Ko-EQ-Bench
+snu_eqbench = load_dataset("thunder-research-group/SNU_Ko-EQ-Bench")
 
-# Snu-WinoGrande
-snu_winogrande = load_dataset("thunder-research-group/snu_winogrande")
+# SNU Ko-WinoGrande
+snu_winogrande = load_dataset("thunder-research-group/SNU_Ko-WinoGrande")
 
-# Snu-LAMBADA
-snu_lambada = load_dataset("thunder-research-group/snu_lambada")
+# SNU Ko-LAMBADA
+snu_lambada = load_dataset("thunder-research-group/SNU_Ko-LAMBADA")
 ```
 
 ---
