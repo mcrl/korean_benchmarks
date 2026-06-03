@@ -1,8 +1,8 @@
-# Korean Benchmarks
+# Thunder Korean Benchmark Suite
 
 ## Summary
-**SNU Thunder Korean Benchmarks** is a collection of Korean benchmark datasets designed to evaluate language models in a wide range of tasks. 
-It includes datasets that are either translated or newly constructed to align with Korean language and cultural context.
+**SNU Thunder Korean Benchmark Suite** is a collection of Korean benchmark datasets designed to evaluate language models in a wide range of tasks. 
+It includes datasets that are either translated or newly constructed to align with the Korean language and cultural context.
 
 The datasets were constructed through task-specific routes, including expert-reviewed translation and localization, direct Korean construction, and hybrid Korean-specific redesign.
 
