@@ -1,5 +1,5 @@
 task: ko-arc-challenge-gen
-dataset_path: "Please add the submitted dataset and provide its local path."
+dataset_path: thunder-research-group/SNU_Ko-ARC
 dataset_name: challenge
 output_type: generate_until
 test_split: test
