@@ -1,5 +1,5 @@
 task: ko-lambada-gen
-dataset_path: "Please add the submitted dataset and provide its local path."
+dataset_path: thunder-research-group/SNU_Ko-LAMBADA
 output_type: generate_until
 test_split: test
 doc_to_text: !function preprocess_ko_lambada_gen.doc_to_text
