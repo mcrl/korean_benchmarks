@@ -1,0 +1,7 @@
+group: benchmark-ko-pretrained
+task:
+  - ko-arc-easy
+  - ko-arc-challenge
+  - ko-winogrande
+  - ko-lambada
+

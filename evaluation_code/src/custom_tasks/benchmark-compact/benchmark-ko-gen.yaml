@@ -1,0 +1,6 @@
+group: benchmark-ko-gen
+task:
+  # korean - for Post-trained Model Evaluation
+  - ko-gsm8k
+  - ko-ifeval
+  - ko-eqbench

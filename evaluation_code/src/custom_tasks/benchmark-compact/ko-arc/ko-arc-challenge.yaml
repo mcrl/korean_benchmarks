@@ -1,0 +1,22 @@
+task: ko-arc-challenge
+dataset_path: "Please add the submitted dataset and provide its local path."
+dataset_name: challenge
+output_type: multiple_choice
+test_split: test
+doc_to_text: "질문: {{question}}\n답변:"
+doc_to_target: "{{choices.label.index(answerKey)}}"
+doc_to_choice: "{{choices.text}}"
+doc_to_prompt_without_question: "답변:"
+should_decontaminate: true
+doc_to_decontamination_query: "질문: {{question}}\n답변:"
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+  - metric: acc_norm
+    aggregation: mean
+    higher_is_better: true
+  - metric: acc_npsq
+num_fewshot: 5
+metadata:
+  version: 1.0

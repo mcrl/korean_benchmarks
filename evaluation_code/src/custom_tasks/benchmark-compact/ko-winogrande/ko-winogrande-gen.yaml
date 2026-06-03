@@ -1,0 +1,33 @@
+task: ko-winogrande-gen
+dataset_path: "Please add the submitted dataset and provide its local path."
+output_type: generate_until
+test_split: test
+doc_to_text: !function preprocess_winogrande_gen.doc_to_text
+doc_to_target: !function preprocess_winogrande_gen.doc_to_target
+should_decontaminate: true
+doc_to_decontamination_query: sentence
+metric_list:
+  - metric: exact_match
+    aggregation: mean
+    higher_is_better: true
+    ignore_case: true
+    ignore_punctuation: true
+generation_kwargs:
+  until:
+    - "\n"
+    - "</s>"
+    - "<|im_end|>"
+  do_sample: false
+  temperature: 0.0
+  max_gen_toks: 512
+repeats: 1
+filter_list:
+  - name: label-extract
+    filter:
+      - function: regex
+        regex_pattern: "(?i)(?:정답\\s*[:：]?\\s*)?([A-B])(?:\\s*(?:번|입니다|이에요|가)|[\\.)\\]:：,\\s]|$)"
+      - function: take_first
+metadata:
+  version: 1.0
+dataset_kwargs:
+  trust_remote_code: true

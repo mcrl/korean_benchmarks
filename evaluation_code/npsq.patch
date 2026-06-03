@@ -1,0 +1,130 @@
+diff --git a/lm_eval/api/metrics.py b/lm_eval/api/metrics.py
+index 5271c1cf..ac573ddb 100644
+--- a/lm_eval/api/metrics.py
++++ b/lm_eval/api/metrics.py
+@@ -178,6 +178,14 @@ def acc_norm_fn(items):  # This is a passthrough function
+ def acc_mutual_info_fn(items):  # This is a passthrough function
+     return items
+ 
++@register_metric(
++    metric="acc_npsq",
++    higher_is_better=True,
++    output_type="multiple_choice",
++    aggregation="mean",
++)
++def acc_npsq_fn(items):  # This is a passthrough function
++    return items
+ 
+ @register_metric(
+     metric="acc_bytes",
+diff --git a/lm_eval/api/task.py b/lm_eval/api/task.py
+index 5eb78c8a..ca25183b 100644
+--- a/lm_eval/api/task.py
++++ b/lm_eval/api/task.py
+@@ -251,6 +251,10 @@ class Task(abc.ABC):
+     def doc_to_text(self, doc):
+         pass
+ 
++    @abc.abstractmethod
++    def doc_to_prompt_without_question(self, doc):
++        pass
++
+     @abc.abstractmethod
+     def doc_to_target(self, doc):
+         pass
+@@ -1279,6 +1283,22 @@ class ConfigurableTask(Task):
+         else:
+             raise TypeError
+ 
++    def doc_to_prompt_without_question(self, doc: Mapping) -> Union[int, str]:
++
++        doc_to_prompt_without_question = "" if self.config.doc_to_prompt_without_question is None else self.config.doc_to_prompt_without_question
++
++        if isinstance(doc_to_prompt_without_question, int):
++            return doc_to_prompt_without_question
++        elif isinstance(doc_to_prompt_without_question, str):
++            if doc_to_prompt_without_question in self.features:
++                return doc[doc_to_prompt_without_question]
++            else:
++                return doc_to_prompt_without_question
++        elif callable(doc_to_prompt_without_question):
++            return doc_to_prompt_without_question(doc)
++        else:
++            raise TypeError
++
+     def doc_to_choice(self, doc: Any, doc_to_choice=None) -> list[str]:
+         if self.prompt is not None:
+             doc_to_choice = self.prompt
+@@ -1374,6 +1394,7 @@ class ConfigurableTask(Task):
+         elif self.OUTPUT_TYPE == "multiple_choice":
+             choices = self.doc_to_choice(doc)
+             target_delimiter = self.config.target_delimiter
++            prompt_without_question = self.doc_to_prompt_without_question(doc)
+             if apply_chat_template:
+                 target_delimiter = (
+                     self.config.target_delimiter
+@@ -1390,7 +1411,7 @@ class ConfigurableTask(Task):
+                 arguments = [(ctx, f"{target_delimiter}{cont}") for cont in choices]
+ 
+             # TODO: we should raise a warning telling users this will at most ~2x runtime.
+-            if "acc_mutual_info" in self._metric_fn_list.keys():
++            if "acc_mutual_info" in self._metric_fn_list.keys() or "acc_npsq" in self._metric_fn_list.keys():
+                 # if we are calculating multiple choice accuracy
+                 # using mutual information instead of raw loglikelihood as metric, need unconditional lls.
+ 
+@@ -1398,8 +1419,19 @@ class ConfigurableTask(Task):
+                 # log(P(choice|ctx) / P(choice)) = log(P(choice|ctx)) - log(P(choice))
+                 # in other words normalizing by subtracting the unconditional logprob of each choice.
+                 # TODO: should these be strided? will have to modify the processing in process_results if so
++
++                ### NOTE: Probability without fewshot, prompt_without_question
++                # aux_arguments = [
++                #     ("", f"{target_delimiter}{choice}") for choice in choices
++                # ]
++
++
++                ### NOTE: Probability with fewshot, prompt_without_question
++                fewshot_examples = ctx.replace(self.doc_to_text(doc), "") if self.config.num_fewshot is not None and self.config.num_fewshot > 0 else ""
++                if len(fewshot_examples.strip()) < 1:
++                    fewshot_examples = ""
+                 aux_arguments = [
+-                    ("", f"{target_delimiter}{choice}") for choice in choices
++                    (fewshot_examples + prompt_without_question, f"{target_delimiter}{choice}") for choice in choices
+                 ]
+ 
+                 arguments.extend(aux_arguments)
+@@ -1496,7 +1528,7 @@ class ConfigurableTask(Task):
+ 
+             if (
+                 2 * len(choices) == len(lls)
+-                and "acc_mutual_info" in self._metric_fn_list.keys()
++                and ("acc_mutual_info" in self._metric_fn_list.keys() or "acc_npsq" in self._metric_fn_list.keys())
+             ):
+                 # then we are doing mutual info.
+                 # this stores the "dryrun" / unconditional answer loglikelihoods
+@@ -1575,6 +1607,13 @@ class ConfigurableTask(Task):
+                 acc_mutual_info = 1.0 if np.argmax(lls_mutual_info) == gold else 0.0
+                 result_dict["acc_mutual_info"] = acc_mutual_info
+ 
++            if "acc_npsq" in use_metric:
++                lls_mutual_info = [
++                    (ll_c - ll_u) / -ll_u if ll_u < 0 else -np.inf for ll_c, ll_u in zip(lls, lls_unconditional)
++                ]
++                acc_npsq = 1.0 if np.argmax(lls_mutual_info) == gold else 0.0
++                result_dict["acc_npsq"] = acc_npsq
++
+         elif self.OUTPUT_TYPE == "generate_until":
+             gold = self.doc_to_target(doc)
+             result = results[0]
+diff --git a/lm_eval/config/task.py b/lm_eval/config/task.py
+index 46601a56..912c029c 100644
+--- a/lm_eval/config/task.py
++++ b/lm_eval/config/task.py
+@@ -105,6 +105,7 @@ class TaskConfig(dict):
+     doc_to_image: Callable | str | None = None
+     doc_to_audio: Callable | str | None = None
+     unsafe_code: bool = False
++    doc_to_prompt_without_question: Callable | str | None = None
+     doc_to_choice: Callable | str | dict | list | None = None
+     process_results: Callable | str | None = None
+     use_prompt: str | None = None
