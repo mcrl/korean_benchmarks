@@ -1,17 +1,10 @@
-> Note: Evaluation code for each benchmark dataset is under preparation and will be released soon to support standardized model assessment.
-
-
 # Korean Benchmarks
 
 ## Summary
 **SNU Thunder Korean Benchmarks** is a collection of Korean benchmark datasets designed to evaluate language models in a wide range of tasks. 
 It includes datasets that are either translated or newly constructed to align with Korean language and cultural context.
 
-All datasets underwent a four-step construction process to ensure high linguistic and logical quality:  
-1. **Initial Translation or Generation**  
-2. **Expert Correction**  
-3. **Localization**  
-4. **Independent Cross-review**
+The datasets were constructed through task-specific routes, including expert-reviewed translation and localization, direct Korean construction, and hybrid Korean-specific redesign.
 
 --- 
 
@@ -44,12 +37,12 @@ For more information about each dataset, please refer to its dedicated Hugging F
 
 | Benchmark         | Evaluation Task                                  | Data Size                                       | Creation Method       | Columns                                           | Available at                                                                 |
 |-------------------|---------------------------------------------------|--------------------------------------------------|------------------------|---------------------------------------------------|------------------------------------------------------------------------------|
-| SNU Ko-ARC        | Science Knowledge Q&A                            | 3,543 (easy: 2,376, challenge: 1,167)            | Translation            | `id`, `question`, `choices`, `answerKey`          | [link](https://huggingface.co/datasets/thunder-research-group/SNU_Ko-ARC)                   |
-| SNU Ko-GSM8K      | Math Problem Solving                              | 1,319                                            | Translation            | `question`, `answer`                              | [link](https://huggingface.co/datasets/thunder-research-group/SNU_Ko-GSM8K)                 |
-| SNU Ko-EQ-Bench   | Dialogue Sentiment Analysis                       | 171                                              | Translation            | `prompt`, `reference_answer`, `reference_answer_fullscale` | [link](https://huggingface.co/datasets/thunder-research-group/SNU_Ko-EQ-Bench)              |
-| SNU Ko-WinoGrande | Logical/Contextual Reasoning and Word Prediction | 1,267                                            | Translation            | `sentence`, `option1`, `option2`, `answer`        | [link](https://huggingface.co/datasets/thunder-research-group/SNU_Ko-WinoGrande)           |
-| SNU Ko-LAMBADA    | Literary Context Understanding and Word Prediction| 2,255                                            | Development            | `index`, `text`, `answer`, `candidate`            | [link](https://huggingface.co/datasets/thunder-research-group/SNU_Ko-LAMBADA)             |
-| SNU Ko-IFEval     | Instruction Following                             | 841 (Translation: 541, Development: 300)         | Translation, Development | `key`, `prompt`, `instruction_id_list`, `kwargs` | [link](https://huggingface.co/datasets/thunder-research-group/SNU_Ko-IFEval)               |
+| SNU Ko-ARC        | Science Knowledge Q&A                            | 3,543 (easy: 2,376, challenge: 1,167)            | Translated + Refined            | `id`, `question`, `choices`, `answerKey`          | [link](https://huggingface.co/datasets/thunder-research-group/SNU_Ko-ARC)                   |
+| SNU Ko-GSM8K      | Math Problem Solving                              | 1,319                                            | Translated + Refined            | `question`, `answer`                              | [link](https://huggingface.co/datasets/thunder-research-group/SNU_Ko-GSM8K)                 |
+| SNU Ko-EQ-Bench   | Dialogue Sentiment Analysis                       | 171                                              | Translated + Refined            | `prompt`, `reference_answer`, `reference_answer_fullscale` | [link](https://huggingface.co/datasets/thunder-research-group/SNU_Ko-EQ-Bench)              |
+| SNU Ko-WinoGrande | Logical/Contextual Reasoning and Word Prediction | 1,267                                            | Translated + Refined            | `sentence`, `option1`, `option2`, `answer`        | [link](https://huggingface.co/datasets/thunder-research-group/SNU_Ko-WinoGrande)           |
+| SNU Ko-LAMBADA    | Literary Context Understanding and Word Prediction| 2,255                                            | Newly Constructed            | `index`, `text`, `answer`, `candidate`            | [link](https://huggingface.co/datasets/thunder-research-group/SNU_Ko-LAMBADA)             |
+| SNU Ko-IFEval     | Instruction Following                             | 841 (Translation: 541, Development: 300)         | Translated + Newly Constructed | `key`, `prompt`, `instruction_id_list`, `kwargs` | [link](https://huggingface.co/datasets/thunder-research-group/SNU_Ko-IFEval)               |
 | **Total**         |                                                   | **9,396**                                        |                        |                                                   |                                                                              |
 
 You can find examples in the `samples` folder.
@@ -62,7 +55,7 @@ You can find examples in the `samples` folder.
 from datasets import load_dataset
 
 # SNU Ko-IFEval
-snu_ifeval = load_dataset("thunder-resesarch-group/SNU_Ko-IFEval")
+snu_ifeval = load_dataset("thunder-research-group/SNU_Ko-IFEval")
 
 # SNU Ko-ARC
 snu_arc_c = load_dataset("thunder-research-group/SNU_Ko-ARC", "challenge")
@@ -87,12 +80,13 @@ snu_lambada = load_dataset("thunder-research-group/SNU_Ko-LAMBADA")
 
 ### Cite as
 ```
-@misc{mcrlkorean2025,
-  title        = {Korean Benchmarks},
-  author       = {{Thunder Research Group}},
-  howpublished = {\url{https://github.com/mcrl/korean_benchmarks}},
-  year         = {2025},
-  note         = {GitHub repository}
+@inproceedings{
+so2026constructing,
+title={Constructing Korean Benchmark Suite for Reliable Evaluation of Foundation Models},
+author={Yeonkyoung So and Jongmin Kim and Sungmok Jung and Gyuseong Lee and Sangho Kim and Jongyeon Park and Joonhak Lee and Seho Pyo and Gyeongje Cho and Seorin Kim and Jisoo Kim and Suyoung Park and Hyunji M. Park and Yelim Ahn and Yeongho Seo and Jaejin Lee},
+booktitle={ICML 2026 Workshop on Combining Theory and Benchmarks: Towards A Virtuous Cycle to Understand and Guarantee Foundation Model Performance},
+year={2026},
+url={https://openreview.net/forum?id=oJ3rhISSqO}
 }
 ```
 
@@ -126,11 +120,15 @@ snu_lambada = load_dataset("thunder-research-group/SNU_Ko-LAMBADA")
 }
 ```
 ```
-@InProceedings{ai2:winogrande,
-title = {WinoGrande: An Adversarial Winograd Schema Challenge at Scale},
-authors={Keisuke, Sakaguchi and Ronan, Le Bras and Chandra, Bhagavatula and Yejin, Choi
-},
-year={2019}
+@article{sakaguchi2021winogrande,
+  title={Winogrande: An adversarial winograd schema challenge at scale},
+  author={Sakaguchi, Keisuke and Bras, Ronan Le and Bhagavatula, Chandra and Choi, Yejin},
+  journal={Communications of the ACM},
+  volume={64},
+  number={9},
+  pages={99--106},
+  year={2021},
+  publisher={ACM New York, NY, USA}
 }
 ```
 ```
@@ -146,4 +144,4 @@ year={2019}
 ```
 
 ### Contact Information
-If you find something wrong or have question about the dataset, contact snullm@aces.snu.ac.kr.
+If you find something wrong or have a question about the dataset, contact snullm@aces.snu.ac.kr.
