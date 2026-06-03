@@ -78,6 +78,10 @@ snu_lambada = load_dataset("thunder-research-group/SNU_Ko-LAMBADA")
 
 ## Additional Information
 
+### License
+
+The evaluation code in this repository is released under the MIT License. Dataset subsets adapted from existing benchmarks follow the licenses of their respective source datasets, while Ko-LAMBADA is released under CC-BY-NC-SA 4.0. For more information, please refer to the dataset card on Hugging Face for each dataset.
+
 ### Cite as
 ```
 @inproceedings{
