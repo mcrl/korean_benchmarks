@@ -74,6 +74,11 @@ snu_winogrande = load_dataset("thunder-research-group/SNU_Ko-WinoGrande")
 snu_lambada = load_dataset("thunder-research-group/SNU_Ko-LAMBADA")
 ```
 
+## Evaluation Code
+
+The `evaluation_code` directory provides evaluation scripts and task configurations based on the [Language Model Evaluation Harness](https://github.com/EleutherAI/lm-evaluation-harness/). Users can run the benchmark evaluations through the harness-compatible setup provided in this repository.
+
+
 ---
 
 ## Additional Information
