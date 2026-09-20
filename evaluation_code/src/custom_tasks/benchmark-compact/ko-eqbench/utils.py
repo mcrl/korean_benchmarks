@@ -1,19 +1,29 @@
+import ast
 import re
 import math
 
 def calculate_score_fullscale(docs, results):
+
+    # Reference answer
+    reference = ast.literal_eval(docs["reference_answer_fullscale"])
+    reference_emotions = {reference[f"emotion{i}"] for i in range(1, 5)}
 
     raw_output = results[0]
     lines = raw_output.split("\n")
     user = {}
     for line in lines:
         match = re.match(r"([\w가-힣]+):\s*(\d+)", line.strip())
+        if match is None:
+            # Extend parsing only for expected labels; ignore unrelated headers.
+            match = re.match(
+                r"([\w가-힣]+(?:[ \t]+[\w가-힣]+)*)[ \t]*:\s*(\d+)",
+                line.strip(),
+            )
+            if match and match.group(1) not in reference_emotions:
+                match = None
         if match:
             emotion, score = match.groups()
             user[emotion] = int(score)
-
-    # Reference answer
-    reference = eval(docs["reference_answer_fullscale"])
 
     # Check if all 4 emotions are returned
     if len(user.items()) != 4:
