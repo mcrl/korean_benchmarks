@@ -1,13 +1,14 @@
-task: ko-lambada
+task: en-winogrande
+# winogrande_xl validation(1267) -> parquet 전송 후 동작 (edata0)
 dataset_path: "Please add the submitted dataset and provide its local path."
 output_type: multiple_choice
 test_split: test
-doc_to_text: !function preprocess_ko_lambada.doc_to_text
-doc_to_target: !function preprocess_ko_lambada.doc_to_target
-doc_to_choice: !function preprocess_ko_lambada.doc_to_choice
+doc_to_text: !function preprocess_winogrande.doc_to_text
+doc_to_target: !function preprocess_winogrande.doc_to_target
+doc_to_choice: !function preprocess_winogrande.doc_to_choice
 doc_to_prompt_without_question: ""
 should_decontaminate: true
-doc_to_decontamination_query: text
+doc_to_decontamination_query: sentence
 metric_list:
   - metric: acc
     aggregation: mean
@@ -16,7 +17,6 @@ metric_list:
     aggregation: mean
     higher_is_better: true
   - metric: acc_npsq
+num_fewshot: 0
 metadata:
   version: 1.0
-dataset_kwargs:
-  trust_remote_code: true

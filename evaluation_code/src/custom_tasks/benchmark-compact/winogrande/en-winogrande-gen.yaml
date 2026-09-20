@@ -1,11 +1,11 @@
-task: ko-lambada-gen
+task: en-winogrande-gen
 dataset_path: "Please add the submitted dataset and provide its local path."
 output_type: generate_until
 test_split: test
-doc_to_text: !function preprocess_ko_lambada_gen.doc_to_text
-doc_to_target: !function preprocess_ko_lambada_gen.doc_to_target
+doc_to_text: !function preprocess_winogrande_gen_en.doc_to_text
+doc_to_target: !function preprocess_winogrande_gen_en.doc_to_target
 should_decontaminate: true
-doc_to_decontamination_query: text
+doc_to_decontamination_query: sentence
 metric_list:
   - metric: exact_match
     aggregation: mean
@@ -25,9 +25,7 @@ filter_list:
   - name: label-extract
     filter:
       - function: regex
-        regex_pattern: "(?i)(?:정답\\s*[:：]?\\s*)?([A-B])(?:\\s*(?:번|입니다|이에요|가)|[\\.)\\]:：,\\s]|$)"
+        regex_pattern: "(?i)(?:Answer\\s*[:：]?\\s*)?([A-B])(?:[\\.)\\]:：,\\s]|$)"
       - function: take_first
 metadata:
   version: 1.0
-dataset_kwargs:
-  trust_remote_code: true

@@ -1,0 +1,6 @@
+group: benchmark-ko-genmcqa
+task:
+  - ko-arc-easy-gen
+  - ko-arc-challenge-gen
+  - ko-winogrande-gen
+  - ko-lambada-gen

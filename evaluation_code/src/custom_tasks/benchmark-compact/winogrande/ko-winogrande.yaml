@@ -1,13 +1,13 @@
-task: ko-lambada
+task: ko-winogrande
 dataset_path: "Please add the submitted dataset and provide its local path."
 output_type: multiple_choice
 test_split: test
-doc_to_text: !function preprocess_ko_lambada.doc_to_text
-doc_to_target: !function preprocess_ko_lambada.doc_to_target
-doc_to_choice: !function preprocess_ko_lambada.doc_to_choice
+doc_to_text: !function preprocess_winogrande.doc_to_text
+doc_to_target: !function preprocess_winogrande.doc_to_target
+doc_to_choice: !function preprocess_winogrande.doc_to_choice
 doc_to_prompt_without_question: ""
 should_decontaminate: true
-doc_to_decontamination_query: text
+doc_to_decontamination_query: sentence
 metric_list:
   - metric: acc
     aggregation: mean

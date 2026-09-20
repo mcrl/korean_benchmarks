@@ -1,0 +1,4 @@
+group: benchmark-deepl-gen
+task:
+  - ko-gsm8k-deepl
+  - ko-eqbench-deepl

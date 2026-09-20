@@ -1,5 +1,5 @@
 task: ko-ifeval
-dataset_path: thunder-research-group/SNU_Ko-IFEval
+dataset_path: "Please add the submitted dataset and provide its local path."
 test_split: test
 output_type: generate_until
 num_fewshot: 0

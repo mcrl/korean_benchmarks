@@ -1,0 +1,4 @@
+group: benchmark-en-gen
+task:
+  - en-gsm8k
+  - en-eqbench

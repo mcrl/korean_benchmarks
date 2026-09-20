@@ -1,0 +1,5 @@
+group: benchmark-en-pretrained
+task:
+  - en-arc-easy
+  - en-arc-challenge
+  - en-winogrande

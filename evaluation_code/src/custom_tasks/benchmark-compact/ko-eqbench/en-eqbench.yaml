@@ -1,4 +1,4 @@
-task: ko-eqbench
+task: en-eqbench
 dataset_path: "Please add the submitted dataset and provide its local path."
 output_type: generate_until
 test_split: test

@@ -1,6 +1,8 @@
 import dataclasses
 from typing import Dict, Optional, Union
 
+# import importlib
+# instructions_registry = importlib.import_module("inference.tasks.benchmark.ifeval.instructions_registry")
 import os, sys
 sys.path.insert(0, os.path.dirname(__file__))
 import instructions_registry

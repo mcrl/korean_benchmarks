@@ -14,6 +14,9 @@
 
 """Registry of all instructions."""
 
+# from lm_eval.tasks.snu_ifeval import instructions
+# import importlib
+# instructions = importlib.import_module("inference.tasks.benchmark.ko-ifeval.instructions")
 import os, sys
 sys.path.insert(0, os.path.dirname(__file__))
 import instructions

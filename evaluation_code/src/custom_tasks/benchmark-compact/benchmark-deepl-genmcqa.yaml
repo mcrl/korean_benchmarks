@@ -1,0 +1,4 @@
+group: benchmark-deepl-genmcqa
+task:
+  - ko-arc-easy-gen-deepl
+  - ko-arc-challenge-gen-deepl

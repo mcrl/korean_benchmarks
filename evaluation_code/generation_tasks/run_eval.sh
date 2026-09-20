@@ -10,24 +10,26 @@ export BACKEND="hf"
 export MODEL="Model Name"
 export SRC_PATH="src/custom_tasks/benchmark-compact" # Path where task information is stored
 export OUTPUT_PATH="PATH To Save Output"
+# 언어/번역본 택1: benchmark-ko-gen / benchmark-deepl-gen / benchmark-en-gen
+export TASKS="benchmark-ko-gen"
 
 # Evaluation without chat_template
 lm_eval \
     --model $BACKEND \
     --model_args pretrained=$MODEL,trust_remote_code=True,max_length=4096 \
     --include_path $SRC_PATH \
-    --tasks benchmark-ko-gen \
-    --output_path $OUTPTU_PATH \
+    --tasks $TASKS \
+    --output_path $OUTPUT_PATH \
     --log_samples \
     --batch_size 1
 
 # Evaluation with chat_template
 lm_eval \
     --model $BACKEND \
-    --model_args pretrained=$MODEL,trust_remote_code=True \
+    --model_args pretrained=$MODEL,trust_remote_code=True,max_length=4096 \
     --include_path $SRC_PATH \
-    --tasks benchmark-ko-gen \
-    --output_path $OUTPTU_PATH \
+    --tasks $TASKS \
+    --output_path $OUTPUT_PATH \
     --log_samples \
     --batch_size 1 \
     --apply_chat_template \

@@ -1,0 +1,4 @@
+group: benchmark-deepl-pretrained
+task:
+  - ko-arc-easy-deepl
+  - ko-arc-challenge-deepl

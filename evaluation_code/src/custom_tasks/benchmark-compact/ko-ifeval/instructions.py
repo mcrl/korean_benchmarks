@@ -26,6 +26,7 @@ from typing import Dict, Optional, Sequence, Union
 import langdetect
 
 # import importlib
+# instructions_util = importlib.import_module("inference.tasks.benchmark.ko-ifeval.instructions_util")
 import os, sys
 sys.path.insert(0, os.path.dirname(__file__))
 import instructions_util

@@ -1,11 +1,11 @@
-task: ko-gsm8k
+task: en-gsm8k
 dataset_path: "Please add the submitted dataset and provide its local path."
 output_type: generate_until
 training_split: test
 fewshot_split: test
 test_split: test
-doc_to_text: "문제: {{question}}\n답:"
-doc_to_target: "{{answer}}" #" {{answer.split('### ')[-1].rstrip()}}"
+doc_to_text: "Question: {{question}}\nAnswer:"
+doc_to_target: "{{answer}}"
 metric_list:
   - metric: exact_match
     aggregation: mean
@@ -14,12 +14,12 @@ metric_list:
     ignore_punctuation: false
     regexes_to_ignore:
       - ","
-      - "원"
+      - "\\$"
       - "(?s).*#### "
       - "\\.$"
 generation_kwargs:
   until:
-    - "문제:"
+    - "Question:"
     - "</s>"
     - "<|im_end|>"
   do_sample: false

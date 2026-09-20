@@ -1,0 +1,5 @@
+group: benchmark-en-genmcqa
+task:
+  - en-arc-easy-gen
+  - en-arc-challenge-gen
+  - en-winogrande-gen
