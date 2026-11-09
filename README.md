@@ -89,13 +89,38 @@ The evaluation code in this repository is released under the MIT License. Datase
 
 ### Cite as
 ```
-@inproceedings{
-so2026constructing,
-title={Constructing Korean Benchmark Suite for Reliable Evaluation of Foundation Models},
-author={Yeonkyoung So and Jongmin Kim and Sungmok Jung and Gyuseong Lee and Sangho Kim and Jongyeon Park and Joonhak Lee and Seho Pyo and Gyeongje Cho and Seorin Kim and Jisoo Kim and Suyoung Park and Hyunji M. Park and Yelim Ahn and Yeongho Seo and Jaejin Lee},
-booktitle={ICML 2026 Workshop on Combining Theory and Benchmarks: Towards A Virtuous Cycle to Understand and Guarantee Foundation Model Performance},
-year={2026},
-url={https://openreview.net/forum?id=oJ3rhISSqO}
+@inproceedings{so-etal-2026-kbs,
+    title = "{KBS}: A {K}orean Benchmark Suite for Foundation Model Evaluation",
+    author = "So, Yeonkyoung  and
+      Kim, Jongmin  and
+      Jung, Sungmok  and
+      Lee, Gyuseong  and
+      Kim, Sangho  and
+      Park, Jongyeon  and
+      Lee, Joonhak  and
+      Pyo, Seho  and
+      Cho, Gyeongje  and
+      Kim, Seorin  and
+      Kim, Jisoo  and
+      Park, Suyoung  and
+      Park, Hyunji M.  and
+      Ahn, Yelim  and
+      Seo, Yeongho  and
+      Lee, Jaejin",
+    editor = "Zhang, Yue  and
+      Xu, Ruifeng  and
+      Purwarianti, Ayu  and
+      Rong, Tong  and
+      Suzuki, Jun",
+    booktitle = "Proceedings of the 15th International Joint Conference on Natural Language Processing and the 5th Conference of the {A}sia-Pacific Chapter of the {A}ssociation for {C}omputational {L}inguistics (Volume 1: Long Papers)",
+    month = nov,
+    year = "2026",
+    address = "Hengqin, China",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2026.aacl-long.198/",
+    pages = "4388--4413",
+    ISBN = "979-8-89176-439-2",
+    abstract = "We present a Korean Benchmark Suite (KBS) comprising Ko-ARC, Ko-GSM8K, Ko-EQ-Bench, Ko-WinoGrande, Ko-LAMBADA, and Ko-IFEval, covering six capabilities across 9,396 items. The suite combines review, localization, direct Korean construction, and redesign for Korean, avoiding a translation-only approach to benchmark adaptation. We evaluate Korean-developed models, multilingual open models, and closed API models under protocols that account for model access, prompt format, and scoring differences. Results show that Korean benchmark scores depend on task construction, scoring rules, prompting, and model post-training. These findings suggest that Korean evaluation should report both final scores and the settings used to obtain them."
 }
 ```
 
